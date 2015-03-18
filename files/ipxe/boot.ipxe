@@ -1,0 +1,67 @@
+#!ipxe
+
+dhcp  
+
+set base-iqn iqn.2015-03.server
+set base-iscsi iscsi:192.168.33.11:::1:${base-iqn}
+set keep-san 1
+
+# Set initiator-iqn to either hostname or mac
+isset ${hostname} && set initiator-iqn ${base-iqn}:${hostname} || set initiator-iqn ${base-iqn}:${mac} 
+
+# Some menu defaults
+set menu-timeout 5000
+set submenu-timeout ${menu-timeout}
+set menu-default menu-live
+ 
+###################### MAIN MENU ####################################
+ 
+:start
+menu iPXE boot menu for ${initiator-iqn}
+item --gap -- 		------------------------- Operating systems ------------------------------
+item --key s desktop 	Desktop from iSCSI
+item --key i install 	Desktop (Installation) on iSCSI
+item --gap -- 		------------------------- Advanced options -------------------------------
+item --key c config 	Configure settings
+item shell 		Drop to iPXE shell
+item reboot 		Reboot computer
+item
+item --key x exit 	Exit iPXE and continue BIOS boot
+choose --timeout ${menu-timeout} --default ${menu-default} selected || goto cancel
+set menu-timeout 0
+goto ${selected} 
+
+:cancel
+echo You cancelled the menu, dropping you to a shell
+ 
+:shell
+echo Type 'exit' to get the back to the menu
+shell
+set menu-timeout 0
+set submenu-timeout 0
+goto start
+ 
+:failed
+echo Booting failed, dropping to shell
+goto shell
+ 
+:reboot
+reboot
+ 
+:exit
+exit
+ 
+:config
+config
+goto start 
+
+:desktop
+sanboot ${base-iscsi}:client || goto exit
+
+:testing
+sanboot ${base-iscsi}:client-testing || goto install
+
+:install
+initrd http://de.archive.ubuntu.com/ubuntu/dists/trusty/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/initrd.gz
+chain http://de.archive.ubuntu.com/ubuntu/dists/trusty/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/linux auto kbd-chooser/method=de keyboard-configuration/layout=Germany keyboard-configuration/variant=Germany console-setup/ask_detect=false locale=de_DE localechooser/translation/warn-light=true localechooser/translation/warn-severe=true debconf/frontend=noninteractive netcfg/get_hostname=ubuntu-1404 netcfg/get_domain=int.lan url=tftp://192.168.33.11/preseed.cfg fb=false noapci 
+boot
