@@ -59,7 +59,7 @@ goto start
 sanboot ${base-iscsi}:client || goto exit
 
 :testing
-sanboot ${base-iscsi}:client-testing || goto install
+sanboot ${base-iscsi}:client || goto install
 
 :install
 initrd http://de.archive.ubuntu.com/ubuntu/dists/trusty/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/initrd.gz
