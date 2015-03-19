@@ -98,17 +98,19 @@ Vagrant.configure(2) do |config|
     end
   end
 
-  config.vm.define "client" do |client|
-    client.vm.box = "steigr/pxe"
-    client.vm.network :private_network, :adapter=>1, ip: "192.168.33.100", auto_config: false
-    client.vm.provider "virtualbox" do |vb|
-      # Display the VirtualBox GUI when booting the machine
-      vb.gui = true
-    
-      # Customize the amount of memory on the VM:
-      vb.memory = "1024"
-      vb.customize ["modifyvm", :id, "--rtcuseutc", "off"]
-      vb.customize ["modifyvm", :id, "--chipset", "piix3"]
+  (1..3).each do |i|
+    config.vm.define "client#{i}" do |client|
+      client.vm.box = "steigr/pxe"
+      client.vm.network :private_network, :adapter=>1, ip: "192.168.33.#{i+100}", auto_config: false
+      client.vm.provider "virtualbox" do |vb|
+        # Display the VirtualBox GUI when booting the machine
+        vb.gui = true
+      
+        # Customize the amount of memory on the VM:
+        vb.memory = "1024"
+        vb.customize ["modifyvm", :id, "--rtcuseutc", "off"]
+        vb.customize ["modifyvm", :id, "--chipset", "piix3"]
+      end
     end
   end
 end
