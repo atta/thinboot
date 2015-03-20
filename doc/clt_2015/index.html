@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Linux im Schulumfeld – Diskless Linux Clients</title>
+<meta name="description"
+	content="Linux im Schulumfeld – Diskless Linux Clients">
+<meta name="author" content="Ansgar Jazdzewski">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style"
+	content="black-translucent" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+<link rel="stylesheet" href="css/reveal.css">
+<link rel="stylesheet" href="css/theme/moon.css" id="theme">
+<!-- Code syntax highlighting -->
+<link rel="stylesheet" href="lib/css/zenburn.css">
+<!-- Printing and PDF exports -->
+<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+<body>
+	<div class="reveal">
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+			<section>
+				<h3>Linux im Schulumfeld</h3>
+				<h1>Diskless Linux Clients</h1>
+				<p>
+					<small>Ein Projekt der LUG Wernigerode</small></br> <small>Ansgar
+						Jazdzewski & Mike Ahrend</small>
+				<h2>Herzlich Willkommen!</h2>
+				</p>
+			</section>
+			<section>
+				<h2>Worum geht's?</h2>
+				<ul>
+					<li>Ein günstiger PC-Pool für Schulen</li>
+					<li>Boot Server mit Fat Clients ohne Festplatte</li>
+					<li>Standard Kubuntu Linux</li>
+					<li>Realisierung mit Bordmitteln</li>
+				</ul>
+			</section>
+			<section data-transition="slide" data-background="#4d7e65"
+				data-background-transition="zoom">
+				<h2>Das wichtigste zuerst</h2>
+				<p>
+					Dieser Vortrag ist keine Verkaufsveranstaltung!</br> Im Gegenteil: Das
+					hier Vorgestellte soll nachgebaut, verändert und verbessert werden!
+				</p>
+				<h3>Bei Fragen: Fragen!</h3>
+			</section>
+			<section>
+				<section>
+					<h2>Übersicht</h2>
+					<ul>
+						<li class="fragment">Entstehung des Projekts</li>
+						<li class="fragment">Entwicklungsschritte</li>
+						<li class="fragment">Die Technik dahinter
+						<li class="fragment">Erfahrungen im Schulalltag</li>
+						<li class="fragment">Zukunftspläne</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Eine kleine Reise durch die Zeit</h2>
+					<p>Gesamtkonferenz am 4.5.2009</p>
+					<p class="fragment">Es gibt 5500€ für einen neuen PC-Pool</p>
+				</section>
+				<section>
+					<h2>"Stand der Technik" 2009</h2>
+					<ul>
+						<li>1 Computerraum mit 10 Rechnern</li>
+						<li>Pentium 2 MMX 256MB RAM</li>
+						<li>10 BASE-T Netzwerk (10Mbit/s Halbduplex)</li>
+						<li>1 Linux Mail- und Proxyserver (Router)</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Pool 2: "Resteverwertung"</h2>
+					<ul>
+						<li>Sammelsurium aus Schulschließungen</li>
+						<li>Keine 2 Rechner genau gleich</li>
+						<li>100MBit Netzwerk</li>
+						<li>noch unbeliebter als Pool 1</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Angebote, die keine sind</h2>
+					<p>Mit einem knappen Budget kann man nicht die Welt einreißen.
+						Funktionieren sollte es schon!</p>
+				</section>
+				<section>
+					<h2>Wir machen es auch ohne</h2>
+					<p>
+						Die LUG Wernigerode kommt ins Spiel. Das Angebot:</br> Das Geld geht zu
+						100% in Hardware, Arbeitsleistungen</br> gibt es ehrenamtlich bei
+						Einsatz von Linux.
+					</p>
+				</section>
+				<section>
+					<h2>Schritt 1: Pool 1 im Februar 2010</h2>
+					<p>
+						Budget 5500€</br> Gigabit LAN, Serverraum neben dem Pool</br> 13 Clients mit
+						Kubuntu Linux
+					</p>
+					Tastaturen, Mäuse, TFT Monitore
+				</section>
+				<section>
+					<h2>...und so sieht das aus:</h2>
+					<img src="./img/pool1.jpg">
+				</section>
+				<section>
+					<h2>Schritt 2: Erweiterung Pool 1</h2>
+					<p>
+						Oktober 2010, Budget 1200€</br> Anschaffung von 4 weiteren Clients</br>
+						Ausbau des Netzwerks
+					</p>
+					Jetzt 16 Rechner+ Lehrerrechner!
+				</section>
+				<section>
+					<h2>Schritt 3: Pool 2 Februar/März 2011</h2>
+					<p>
+						Fördermittel genehmigt am 13.09.2010, Budget 15.000€</br>
+						richtlinienkonform 16 Rechner+Lehrer, Netzwerkausbau</br> neuer
+						(richtiger) Server, leise Clients, Tastaturen, Mäuse, Monitore
+					</p>
+				</section>
+				<section>
+					<h2>Nu aber Butter bei die Fische</h2>
+					<p>Was braucht man denn jetzt genau?</p>
+					<small>Möge die Macht mit euch sein ;)</small>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Serverdienste</h2>
+					<h3>Was muss das Ding können?</h3>
+					<ul>
+						<li>Bereitstellen eines Bootimages</br> für die Diskless-Clients
+							(iSCSI)</li>
+						<li>Snapshots dieser Bootimages (LVM)</li>
+						<li>Netzwerkkram (DNS, DHCP und TFTP)</li>
+						<li>Netzlaufwerke (SMB / NFS)</li>
+						<li>User / Profile (LDAP AD usw.)</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Server Innenleben</h2>
+					<h3>Mehr ist immer besser...</h3>
+					<p>ausreichend: 4GB RAM und 60GB HDD 1GBit LAN</p>
+					<p>besser: 16GB RAM, Festplatten im RAID und 4 Gigabit
+						Interfaces</p>
+					<p>OS: Standard Server Linux, z.B.: Ubuntu 14.04 Server</p>
+				</section>
+			</section>
+			<section data-transition="slide" data-background="#b5533c"
+				data-background-transition="zoom">
+				<h2>Achtung - Es wird Technisch</h2>
+				<blockquote>Hier werden Tools zur Automatisierung der
+					Serverinstallation verwendet. Dies erleichert das Nachbauen.
+					Puppet, r10k und vagrant sprengen den Zeitrahmen. Bitte schaut euch
+					die Möglichkeiten dieser Tools an - Ihr werdet begeistert sein!</blockquote>
+				<small><a href="https://www.vagrantup.com/">vagrant</a>, <a
+					href="https://puppetlabs.com/">puppet</a>, <a
+					href="https://github.com/puppetlabs/r10k">r10k</a></small>
+			</section>
+			<section data-transition="slide" data-background="#484892"
+				data-background-transition="zoom">
+				<h2>Genug Theorie?</h2>
+				<p>let's have a short look</p>
+				<pre>
+					<code data-trim contenteditable>apt-get install virtualbox</code>
+				</pre>
+				<pre>
+					<code data-trim contenteditable>gem install vagrant</code>
+				</pre>
+				<pre>
+					<code data-trim contenteditable>git clone git@github.com:atta/thinboot.git && cd thinboot</code>
+				</pre>
+				<pre>
+					<code data-trim contenteditable>vagrant up server</code>
+				</pre>
+			</section>
+			<section>
+				<section>
+					<h2>Was zur Hölle passiert hier?!</h2>
+					<p>Wir bauen eine VM für den Server - wir brauchen:</p>
+					<ul>
+						<li>Netzwerkkram: DHCP, DNS, TFTP</li>
+						<li>Bootimage: LVM, iSCSI, iPXE</li>
+					</ul>
+					<p></p>
+					<small>und das Ganze bitte automatisiert, niemand mag
+						doppelte Arbeit</small>
+				</section>
+				<section>
+					<h2>LVM</h2>
+					<p>Logische Verwaltung von Festplatten, Partitionen und
+						Snapshots</p>
+					<p>Snapshots bieten die Möglichkeit, eine Partition
+						(LogicalVolume) vor einem Update einzufrieren, um gegebenenfalls
+						alles wieder ungeschehen machen zu können.</p>
+				</section>
+				<section>
+					<h2>DNS, DHCP und TFTP</h2>
+					<p>Hier ist dnsmasq unser Freund: Er bringt alles in einem mit!</p>
+				</section>
+				<section>
+					<h2>iPXE</h2>
+					<p>
+						Der wohl beste Netzwerkbootloader kann: DHCP, DNS HTTP, TFTP und
+						eben iSCSI <a href="http://ipxe.org/">iPXE - open source boot
+							firmware</a>
+					</p>
+					<small>...it's cool man!</small>
+				</section>
+				<section>
+					<h2>iSCSI</h2>
+					<p>
+						Als iSCSI target verwenden wir <a
+							haref="http://stgt.sourceforge.net/">(s)tgt</a>, dieser kann
+						Festplatten readonly freigeben, was systemrelevant ist.
+					</p>
+					<pre>
+						<code data-trim contenteditable>default-driver iscsi
+<target iqn.2015-03.server:client>
+        backing-store /dev/data/client
+        readonly 0
+</target>
+						</code>
+					</pre>
+					<small>"weil einfach einfach einfach ist"</small>
+				</section>
+			</section>
+			<section>
+				<section data-transition="slide" data-background="#484892"
+					data-background-transition="zoom">
+					<h2>Jetzt aber Praxis</h2>
+					<p>...war der Vortrag nicht eigentlich über clients?</p>
+					<pre>
+						<code data-trim contenteditable>vagrant up client1</code>
+					</pre>
+				</section>
+				<section>
+					<h2>Die Clients</h2>
+					<h3>Was müssen die können?</h3>
+					<ul>
+						<li>Netzwerkboot im BIOS (PXE)</li>
+						<li>Einbinden von iSCSI-Freigaben zum booten (iPXE / sanboot)</li>
+						<li>Schreibzugriffe auf die iSCSI-Freigabe abfangen (aufs)</li>
+						<li>ab hier normaler boot zum Linux Desktop</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Das Client-Innenleben</h2>
+					<h3>Was nicht da ist, kann nicht kaputt gehen!</h3>
+					<p>Keine Festplatten, keine Lüfter, keine Laufwerke!</p>
+					<p>Gehäuse mit ext. Netzteil, MB mit Atom und 2GB RAM</p>
+					<p>OS: Desktop Linux, z.B.: Kubuntu 14.04</p>
+				</section>
+				<section>
+					<h2>Und wieder Magie</h2>
+					<p>Kein fertiges Clientimage? Dann basteln wir halt eins!</p>
+					<ul>
+						<li>iPXE - sanboot MBR von iSCSI</li>
+						<li>preseed - Assistent für Debianinstallationen</li>
+						<li>open-iscsi - Verbindungen zu den Festplatten aufbauen</li>
+						<li>multipath - viele Wege führen zur Festplatte</li>
+						<li>aufs - Overlayfilesystem</li>
+					</ul>
+				</section>
+				<section>
+					<h2>iPXE - sanboot</h2>
+					<p>Laden des MBR von einer via iSCSI freigegebenen Festplatte:</p>
+					<pre>
+						<code data-trim contenteditable>git clone git://git.ipxe.org/ipxe.git</code>
+					</pre>
+					<p>Der wesentliche Teil in der boot.ipxe:</p>
+					<pre>
+						<code data-trim contenteditable>sanboot iscsi:192.168.33.11:::1:iqn.2015-03.server:client</code>
+					</pre>
+					<p>Chainload war gestern:</p>
+					<pre>
+						<code data-trim contenteditable>make bin/ipxe.pxe EMBED=boot.ipxe</code>
+					</pre>
+					<small>Nur booten führt zum Guten, <a
+						href="https://raw.githubusercontent.com/atta/thinboot/master/files/ipxe/boot.ipxe">boot.ipxe</a></small>
+				</section>
+				<section>
+					<h2>preseed</h2>
+					<p>Hier wird die Installation gestartet, wenn es nicht möglich
+						war vom MBR der iSCSI-Disc zu booten</p>
+					<pre>
+						<code data-trim contenteditable># Default user
+d-i passwd/user-fullname string user
+d-i passwd/username string user
+d-i passwd/user-password password user
+d-i passwd/user-password-again password user
+d-i passwd/username string user
+d-i user-setup/allow-password-weak boolean true
+d-i user-setup/encrypt-home boolean false
+</code>
+					</pre>
+					<p>Etwas für Faule und gegen monotone Arbeiten!</p>
+					<small>...ich click mir doch keinen Wolf...</small>
+				</section>
+				<section>
+					<h2>open-iscsi</h2>
+					<p>Für mehrere Verbindungen in die /etc/iscsi/iscsi.initramfs
+						IPs in ISCSI_TARGET_IP schreiben</p>
+					<pre>
+						<code>"192.168.33.11 192.168.33.12 192.168.33.13 192.168.33.14"</code>
+					</pre>
+					<p>"update-initramfs -k all -u" und voilà, nach dem reboot</p>
+					<pre>
+						<code data-trim contenteditable># iscsiadm -m session     
+tcp: [1] 192.168.33.11:3260,1 iqn.2015-03.server:client
+tcp: [2] 192.168.33.12:3260,1 iqn.2015-03.server:client
+tcp: [3] 192.168.33.13:3260,1 iqn.2015-03.server:client
+tcp: [4] 192.168.33.14:3260,1 iqn.2015-03.server:client</code>
+					</pre>
+					<small>Sesam verbinde mich</small>
+				</section>
+				<section>
+					<h2>multipath</h2>
+					<pre>
+						<code data-trim contenteditable># multipath -ll
+mpath0 (33000000100000001) dm-0 IET,VIRTUAL-DISK
+size=10G features='1 queue_if_no_path' hwhandler='0' wp=rw
+`-+- policy='round-robin 0' prio=1 status=active
+  |- 3:0:0:1 sda 8:0  active ready running
+  |- 4:0:0:1 sdb 8:16 active ready running
+  |- 5:0:0:1 sdc 8:32 active ready running
+  `- 6:0:0:1 sdd 8:48 active ready running</code>
+					</pre>
+					<small>Viele Wege führen nach Rom - Autobahnen sogar mit
+						mehreren Spuren!</small>
+				</section>
+				<section>
+					<h2>aufs</h2>
+					<p>
+						Das root filesystem "/" wird readonly und somit "unverwundbar", <a
+							href="https://github.com/atta/aufs-tools-boot">aufs-tools-boot</a>
+					</p>
+					<pre>
+						<code data-trim contenteditable># mount
+aufs on / type aufs (rw)
+/dev/mapper/mpath0-part1 on /ro type ext4 (ro,relatime,data=ordered)
+aufs-tmpfs on /rw type tmpfs (rw,relatime)</code>
+					</pre>
+					<small>mach kaputt, was dich kaputt macht</small>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Ganz einfach? Das kann ja jeder sagen!</h2>
+					<p>Na dann installieren wir mal etwas...</p>
+				</section>
+				<section>
+					<h2>Schritt 1 Snapshot</h2>
+					<p>Falls wir noch keinen haben, wird es jetzt höchste Zeit!</p>
+					<pre>
+						<code data-trim contenteditable>lvcreate --size 2G --snapshot --name test /dev/data/client</code>
+					</pre>
+				</section>
+				<section>
+					<h2>Schritt 2 iSCSI anpassen</h2>
+					<p>tgt (target) auf readwrite stellen und ggf. den Pfad zum
+						Blockdevice anpassen</p>
+					<pre>
+						<code data-trim contenteditable>default-driver iscsi
+<target iqn.2015-03.server:client>
+        backing-store /dev/data/client
+        readonly 0
+</target>
+					</code>
+					</pre>
+				</section>
+				<section>
+					<h2>Schritt 3 einen Client starten</h2>
+					<p>Beim grub "aufs=tmpfs" entfernen</p>
+				</section>
+				<section>
+					<h2>Schritt 4 Systemupdate</h2>
+					<p>Nun kann wie auf einem normalen Rechner gearbeitet werden,
+						Installationen, Software updates, ... sind möglich!</p>
+				</section>
+				<section>
+					<h2>Schritt 5 Reboot</h2>
+					<p>Nun das System mit aufs testen (normaler Boot)</p>
+				</section>
+				<section>
+					<h2>Schritt 6 Fertig</h2>
+					<p>Nicht vergessen, den tgt zurück auf readonly zu stellen!</p>
+					<pre>
+						<code data-trim contenteditable>default-driver iscsi
+<target iqn.2015-03.server:client>
+        backing-store /dev/data/client
+        readonly 1
+</target>
+						</code>
+					</pre>
+				</section>
+			</section>
+			<section>
+				<h2>Das ist aber nicht alles</h2>
+				<p>Aus Zeitgründen habe ich leider ausgespart:</p>
+				<ul>
+					<li>Nutzerverwaltung (LDAP, AD/Samba4)</li>
+					<li>Benutzerprofile und/oder -homes</li>
+					<li>Fileserver/Printserver</li>
+					<li>Lehrer-Tools wie iTalk/epoptes</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Wie bekomme ich alle Informationen?</h2>
+				<p>
+					<a href="https://github.com/atta/thinboot">github.com/atta/thinboot</a>
+				</p>
+				<small>Mach mit, mach's nach, mach's besser!</small>
+			</section>
+			<section>
+				<h2>Was kommt noch?</h2>
+				<ul>
+					<li>Mehrere Netze mit einem Image (Pools)</li>
+					<li>Einfaches booten von Snapshots (parallel)</li>
+					<li>Serverinstallation auf Synology / Qnap oder ähnlichem</li>
+				</ul>
+				<p></p>	
+				<h3>Fragen zur Technik? Oder hat es euch erschlagen?</h3>
+				<small>Viel lernen du noch musst</small>
+			</section>
+			<section>
+				<h2>Und was haben wir jetzt davon?</h2>
+				<ul>
+					<li>Ein System für beliebig viele verschiedene Rechner</li>
+					<li>Es ist keine Installation mehr nötig</li>
+					<li>Updates sind sicher, einfach und umkehrbar</li>
+					<li>Der Kernel ist im System</li>
+					<li>Softwareseitig unkaputtbar!</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Die Kosten bei uns</h2>
+			</section>
+			<section>
+				<h2>Software</h2>
+				<ul>
+					<li>Standard Kubuntu LTS, aktuell 12.04</li>
+					<li>Firefox</li>
+					<li>Libreoffice</li>
+					<li>edubuntu Paket</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Nutzung im Schulalltag</h2>
+				<ul>
+					<li>Internetrecherche</li>
+					<li>Textverarbeitung, Tabellenkalkulation</li>
+					<li>Bildbearbeitung, Grafikdesign</li>
+					<li>Lego® Mindstorms mit tuxminds</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Zukunftspläne</h2>
+				<ul>
+					<li>Update auf Kubuntu 14.04</li>
+					<li>Erneuerung der Mainboards</li>
+					<li>Lösung des UEFI-Problems</li>
+					<li>Erweiterung der Schultechnik</li>
+				</ul>
+			</section>
+			<section>
+			<h2>Vielen Dank für die Aufmerksamkeit!</h2>
+			<p>a.jazdzewski@gmail.com</p>
+			</section>
+		</div>
+	</div>
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+	<script>
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				transition: 'fade', // none/fade/slide/convex/concave/zoom
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+		</script>
+</body>
+</html>
